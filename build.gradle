@@ -28,6 +28,10 @@ dependencies {
     testImplementation 'com.h2database:h2:2.1.214'
 
     testImplementation 'org.everit.json:org.everit.json.schema:1.0.0'
+
+    testImplementation "org.testcontainers:testcontainers:1.18.0"
+    testImplementation "org.testcontainers:junit-jupiter:1.18.0"
+    testImplementation "org.testcontainers:postgresql:1.18.0"
 }
 
 test {
