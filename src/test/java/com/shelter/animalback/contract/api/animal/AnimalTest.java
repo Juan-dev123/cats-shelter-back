@@ -35,6 +35,7 @@ public class AnimalTest {
 
     @BeforeEach
     public void changeContext(PactVerificationContext context) {
+        System.setProperty("pact.verifier.publishResults", "true");
         MockMvcTestTarget testTarget = new MockMvcTestTarget();
         testTarget.setControllers(animalController);
         context.setTarget(testTarget);
