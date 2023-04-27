@@ -58,4 +58,14 @@ public class AnimalTest {
         animals.add(animal);
         Mockito.when(animalService.getAll()).thenReturn(animals);
     }
+
+    @State("there are no animals")
+    public void saveAnimals() {
+        Animal animal = new Animal();
+        animal.setName("Loli");
+        animal.setBreed("Birmano");
+        animal.setGender("Male");
+        animal.setVaccinated(true);
+        Mockito.when(animalService.save(Mockito.any(Animal.class))).thenReturn(animal);
+    }
 }
