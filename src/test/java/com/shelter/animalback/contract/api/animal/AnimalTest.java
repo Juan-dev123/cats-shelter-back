@@ -45,7 +45,7 @@ public class AnimalTest {
     @ExtendWith(PactVerificationInvocationContextProvider.class)
     void pactVerificationTestTemplate(PactVerificationContext context) {
         context.verifyInteraction();
-    }
+    } //antes de ejecutar esto se llaman los states
 
     @State("has animals")
     public void listAnimals() {
