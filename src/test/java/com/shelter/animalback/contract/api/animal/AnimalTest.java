@@ -7,6 +7,8 @@ import au.com.dius.pact.provider.junitsupport.loader.PactBroker;
 import au.com.dius.pact.provider.junitsupport.loader.PactBrokerAuth;
 import au.com.dius.pact.provider.spring.junit5.MockMvcTestTarget;
 import com.shelter.animalback.controller.AnimalController;
+import com.shelter.animalback.model.AnimalDao;
+import com.shelter.animalback.repository.AnimalRepository;
 import com.shelter.animalback.service.interfaces.AnimalService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.TestTemplate;
@@ -20,6 +22,8 @@ import org.mockito.Mockito;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+
 @ExtendWith(MockitoExtension.class)
 @Provider("CatShelterBack")
 @PactBroker(
@@ -29,6 +33,9 @@ public class AnimalTest {
 
     @Mock
     private AnimalService animalService;
+
+    @Mock
+    private AnimalRepository animalRepository;
 
     @InjectMocks //controller real
     private AnimalController animalController;
@@ -66,6 +73,16 @@ public class AnimalTest {
         animal.setBreed("Birmano");
         animal.setGender("Male");
         animal.setVaccinated(true);
-        Mockito.when(animalService.save(Mockito.any(Animal.class))).thenReturn(animal);
+        Mockito.when(animalService.save(any(Animal.class))).thenReturn(animal);
+    }
+
+    @State("there are one animal")
+    public void deleteAnimals(){
+        AnimalDao animal = new AnimalDao();
+        animal.setName("Loli");
+        animal.setBreed("Birmano");
+        animal.setGender("Male");
+        animal.setVaccinated(true);
+        Mockito.doNothing().when(animalService).delete(any(String.class));
     }
 }
