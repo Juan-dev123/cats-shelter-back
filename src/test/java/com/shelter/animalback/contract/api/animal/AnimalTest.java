@@ -90,4 +90,14 @@ public class AnimalTest {
         animal.setVaccinated(true);
         Mockito.when(animalService.get(any(String.class))).thenReturn(animal);
     }
+
+    @State("there is one animal to update")
+    public void updateAnimal(){
+        Animal animal = new Animal();
+        animal.setName("Loli");
+        animal.setBreed("Birmano");
+        animal.setGender("Male");
+        animal.setVaccinated(true);
+        Mockito.when(animalService.replace(any(String.class), any(Animal.class))).thenReturn(animal);
+    }
 }
